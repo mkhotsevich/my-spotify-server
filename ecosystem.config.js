@@ -11,7 +11,7 @@ module.exports = {
       host: 'std-927.ist.mospolytech.ru',
       ref: 'origin/master',
       repo: 'git@github.com:mkhotsevich/my-spotify-server.git',
-      path: '/home/std',
+      path: '/home/std/my-spotify-server',
       'post-deploy':
         'npm install && pm2 reload ecosystem.config.js --env production'
     }
