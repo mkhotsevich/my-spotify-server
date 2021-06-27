@@ -6,7 +6,7 @@ const database = require('./database')
 const start = async () => {
   try {
     await database.authenticate()
-    await database.sync()
+    await database.sync({ force: true })
     app.listen(5000, () => console.log('Server started on port 5000'))
   } catch (e) {
     console.error(e)

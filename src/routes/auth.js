@@ -1,20 +1,18 @@
 const { Router } = require('express')
 const config = require('config')
 const uuid = require('uuid')
+const createError = require('http-errors')
 
 const User = require('../models/User')
 const spotifyApi = require('../spotify')
 const jwt = require('../utils/jwt')
 
 const router = Router()
-const spotifyConfig = config.get('spotify')
+const { scopes } = config.get('spotify')
 
 router.get('/', (req, res) => {
   const state = uuid.v4()
-  const authorizeURL = spotifyApi.createAuthorizeURL(
-    spotifyConfig.scopes,
-    state
-  )
+  const authorizeURL = spotifyApi.createAuthorizeURL(scopes, state)
   return res.redirect(authorizeURL)
 })
 
@@ -26,16 +24,12 @@ router.get('/redirect', async (req, res) => {
     spotifyApi.setAccessToken(access_token)
 
     const getMeData = await spotifyApi.getMe()
-    const { country, display_name, email, id, images } = getMeData.body
+    const { id } = getMeData.body
 
     const user = await User.findOrCreate({
       where: { spotifyId: id },
       defaults: {
-        country,
-        name: display_name,
-        email,
         spotifyId: id,
-        image: images[0].url,
         accessToken: access_token,
         refreshToken: refresh_token
       }
@@ -45,8 +39,8 @@ router.get('/redirect', async (req, res) => {
 
     return res.status(201).json({ accessToken: jwtToken })
   } catch (e) {
-    console.error(e)
-    return res.status(500).json(e)
+    console.error(e.message)
+    return createError(500, e.message)
   }
 })
 
