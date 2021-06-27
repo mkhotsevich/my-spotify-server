@@ -10,20 +10,22 @@ const jwt = require('../utils/jwt')
 const router = Router()
 const { scopes } = config.get('spotify')
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   try {
     const state = uuid.v4()
-    const authorizeURL = spotifyApi.createAuthorizeURL(scopes, state)
+    const authorizeURL = spotifyApi.createAuthorizeURL(scopes, state, true)
     return res.redirect(authorizeURL)
   } catch (e) {
-    console.error(e.message)
-    return createError(500, e.message)
+    console.error(e)
+    return next(createError(500, e))
   }
 })
 
 router.get('/redirect', async (req, res) => {
   try {
     const { code } = req.query
+    if (!code) return next(createError(401))
+
     const authData = await spotifyApi.authorizationCodeGrant(code)
     const { access_token, refresh_token } = authData.body
     spotifyApi.setAccessToken(access_token)
@@ -44,8 +46,8 @@ router.get('/redirect', async (req, res) => {
 
     return res.status(201).json({ accessToken: jwtToken })
   } catch (e) {
-    console.error(e.message)
-    return createError(500, e.message)
+    console.error(e)
+    return next(createError(500, e))
   }
 })
 
