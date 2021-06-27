@@ -21,7 +21,7 @@ router.get('/', (req, res, next) => {
   }
 })
 
-router.get('/redirect', async (req, res) => {
+router.get('/redirect', async (req, res, next) => {
   try {
     const { code } = req.query
     if (!code) return next(createError(401))
