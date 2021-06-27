@@ -11,9 +11,14 @@ const router = Router()
 const { scopes } = config.get('spotify')
 
 router.get('/', (req, res) => {
-  const state = uuid.v4()
-  const authorizeURL = spotifyApi.createAuthorizeURL(scopes, state)
-  return res.redirect(authorizeURL)
+  try {
+    const state = uuid.v4()
+    const authorizeURL = spotifyApi.createAuthorizeURL(scopes, state)
+    return res.redirect(authorizeURL)
+  } catch (e) {
+    console.error(e.message)
+    return createError(500, e.message)
+  }
 })
 
 router.get('/redirect', async (req, res) => {
