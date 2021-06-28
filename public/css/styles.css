@@ -58,7 +58,7 @@ hr,
   display: none;
 }
 .c-checkbox:checked + .c-formContainer .c-form {
-  width: 25em;
+  width: 22em;
 }
 .c-checkbox:checked + .c-formContainer .c-form__toggle {
   visibility: hidden;
@@ -93,7 +93,7 @@ hr,
 .c-formContainer,
 .c-form,
 .c-form__toggle {
-  width: 15em;
+  width: 12em;
   height: 3em;
 }
 
