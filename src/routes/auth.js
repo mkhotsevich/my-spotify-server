@@ -1,54 +1,14 @@
 const { Router } = require('express')
-const config = require('config')
-const uuid = require('uuid')
-const createError = require('http-errors')
 
-const User = require('../models/User')
-const spotifyApi = require('../spotify')
-const jwt = require('../utils/jwt')
+const {
+  redirectToAuthorizeURL,
+  getAccessToken
+} = require('../controllers/auth.controller')
 
 const router = Router()
-const { scopes } = config.get('spotify')
 
-router.get('/', (req, res, next) => {
-  try {
-    const state = uuid.v4()
-    const authorizeURL = spotifyApi.createAuthorizeURL(scopes, state, true)
-    return res.redirect(authorizeURL)
-  } catch (e) {
-    console.error(e)
-    return next(createError(500, e))
-  }
-})
+router.get('/', redirectToAuthorizeURL)
 
-router.get('/redirect', async (req, res, next) => {
-  try {
-    const { code } = req.query
-    if (!code) return next(createError(401))
-
-    const authData = await spotifyApi.authorizationCodeGrant(code)
-    const { access_token, refresh_token } = authData.body
-    spotifyApi.setAccessToken(access_token)
-
-    const getMeData = await spotifyApi.getMe()
-    const { id } = getMeData.body
-
-    const user = await User.findOrCreate({
-      where: { spotifyId: id },
-      defaults: {
-        spotifyId: id,
-        accessToken: access_token,
-        refreshToken: refresh_token
-      }
-    })
-
-    const jwtToken = jwt.sign(user.shift().id)
-
-    return res.status(201).json({ accessToken: jwtToken })
-  } catch (e) {
-    console.error(e)
-    return next(createError(500, e))
-  }
-})
+router.get('/redirect', getAccessToken)
 
 module.exports = router

@@ -1,16 +1,30 @@
 require('dotenv').config()
+const CronJob = require('cron').CronJob
+const db = require('quick.db')
 
 const app = require('./app')
-const database = require('./database')
+const spotify = require('./spotify/spotify')
 
-const start = async () => {
-  try {
-    await database.authenticate()
-    await database.sync({ force: true })
-    app.listen(5000, () => console.log('Server started on port 5000'))
-  } catch (e) {
-    console.error(e)
-  }
-}
+const job = new CronJob('* * */24 * * *', async () => {
+  const refreshToken = db.get('tokens.refreshToken')
+  spotify.setRefreshToken(refreshToken)
+  const {
+    body: { access_token }
+  } = await spotify.refreshAccessToken()
+  db.set('tokens.accessToken', access_token)
+  console.log('token updated')
+})
+job.start()
 
-start()
+const server = app.listen(5000, () =>
+  console.log('Server started on port 5000')
+)
+
+process.on('SIGTERM', () => {
+  console.info('SIGTERM signal received.')
+  console.log('Closing http server.')
+  server.close(() => {
+    console.log('Http server closed.')
+    process.exit(0)
+  })
+})

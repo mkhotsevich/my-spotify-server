@@ -1,0 +1,26 @@
+@font-face {
+  font-family: Circular;
+  src: url('https://sp-bootstrap.spotifycdn.com/8.12.5/fonts/circular-cyr-bold.woff2');
+}
+body {
+  background-color: #191414;
+  font-family: Circular, Helvetica, Arial, sans-serif;
+}
+
+.cover {
+  width: 250px;
+  height: 250px;
+}
+
+.author-name {
+  color: #808080;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

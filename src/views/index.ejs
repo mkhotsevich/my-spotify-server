@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./particles/head'); %>
+  </head>
+  <body>
+    <div class="container">
+      <% if (isListening) { %>
+      <div class="row mt-5">
+        <div class="col d-flex justify-content-center">
+          <h1 class="text-white">Now playing:</h1>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col d-flex justify-content-center">
+          <a href="<%= uri %>"
+            ><img src="<%= image %>" alt="cover" class="cover"
+          /></a>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col col d-flex justify-content-center">
+          <a href="<%= uri %>" class="text-white h1"><%= name %></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col d-flex justify-content-center">
+          <h6 class="author-name"><%= author %></h6>
+        </div>
+      </div>
+      <% } else{ %>
+      <div class="row mt-5">
+        <div class="col d-flex justify-content-center align-center">
+          <h1 class="text-white">Now I'm busy, I'll listen to music later</h1>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>
