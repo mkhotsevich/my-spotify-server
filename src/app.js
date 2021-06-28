@@ -31,7 +31,8 @@ app.get('/', async (req, res) => {
     author,
     isListening,
     uri,
-    recentlyTrack
+    recentlyTrack,
+    cache: false
   })
 })
 
