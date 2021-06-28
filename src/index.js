@@ -5,7 +5,7 @@ const db = require('quick.db')
 const app = require('./app')
 const spotify = require('./spotify/spotify')
 
-const job = new CronJob('* * */24 * * *', async () => {
+const job = new CronJob('* */60 * * * *', async () => {
   const refreshToken = db.get('tokens.refreshToken')
   spotify.setRefreshToken(refreshToken)
   const {
