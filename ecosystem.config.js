@@ -24,7 +24,7 @@ module.exports = {
     development: {
       user: 'std',
       host: 'std-927.ist.mospolytech.ru',
-      ref: 'origin/master',
+      ref: 'origin/develop',
       repo: 'git@github.com:mkhotsevich/my-spotify-server.git',
       path: '/home/std/my-spotify-server',
       'post-deploy':
