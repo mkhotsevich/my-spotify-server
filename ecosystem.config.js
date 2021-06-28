@@ -13,8 +13,8 @@ module.exports = {
   ],
   deploy: {
     production: {
-      user: ['root', 'std'],
-      host: ['89.108.102.195', 'std-927.ist.mospolytech.ru'],
+      user: 'std',
+      host: 'std-927.ist.mospolytech.ru',
       ref: 'origin/master',
       repo: 'git@github.com:mkhotsevich/my-spotify-server.git',
       path: '/home/std/mkhotsevich.ru',
