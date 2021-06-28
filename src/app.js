@@ -18,6 +18,7 @@ app.use(morgan('dev'))
 
 app.use('/auth', require('./routes/auth'))
 app.use('/top', require('./routes/top'))
+app.use('/player', require('./routes/player'))
 
 app.get('/', async (req, res) => {
   const accessToken = db.get('tokens.accessToken')

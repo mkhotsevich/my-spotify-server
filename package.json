@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "config": "^3.3.6",
     "cron": "^1.8.2",
     "dotenv": "^10.0.0",

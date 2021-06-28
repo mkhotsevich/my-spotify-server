@@ -1,4 +1,5 @@
 const moment = require('moment')
+const axios = require('axios')
 const spotify = require('./spotify')
 
 module.exports.getCurrentPlayingTrack = async accessToken => {
@@ -70,6 +71,30 @@ module.exports.getRecentlyPlayedTracks = async accessToken => {
       }
     })
     return recentlyTrack
+  } catch (e) {
+    console.log(e)
+    return new Error(e)
+  }
+}
+
+module.exports.addToQueue = async (accessToken, uri) => {
+  try {
+    await axios.post(
+      `https://api.spotify.com/v1/me/player/queue?uri=${uri}`,
+      {},
+      { headers: { Authorization: `Bearer ${accessToken}` } }
+    )
+    return true
+  } catch (e) {
+    console.log(e)
+    return false
+  }
+}
+
+module.exports.skipToNext = async accessToken => {
+  try {
+    spotify.setAccessToken(accessToken)
+    await spotify.skipToNext()
   } catch (e) {
     console.log(e)
     return new Error(e)
