@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "deploy": "pm2 deploy ecosystem.config.js production update"
+    "deploy": "pm2 deploy ecosystem.config.js production update",
+    "deploy:dev": "pm2 deploy ecosystem.config.js development update"
   },
   "keywords": [],
   "author": "",
