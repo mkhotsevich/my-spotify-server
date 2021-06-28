@@ -6,6 +6,10 @@ const moment = require('moment')
 const app = require('./app')
 const spotify = require('./spotify/spotify')
 
+const server = app.listen(5000, () =>
+  console.log('Server started on port 5000')
+)
+
 const job = new CronJob('0 */60 * * * *', async () => {
   const refreshToken = db.get('tokens.refreshToken')
   spotify.setRefreshToken(refreshToken)
@@ -16,10 +20,6 @@ const job = new CronJob('0 */60 * * * *', async () => {
   console.log(`Token updated at: ${moment().format('HH:mm DD.MM')}`)
 })
 job.start()
-
-const server = app.listen(5000, () =>
-  console.log('Server started on port 5000')
-)
 
 process.on('SIGTERM', () => {
   console.info('SIGTERM signal received.')

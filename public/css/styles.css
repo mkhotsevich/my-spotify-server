@@ -17,6 +17,11 @@ body {
   height: 50px;
 }
 
+.md-cover {
+  width: 150px;
+  height: 150px;
+}
+
 .author-name {
   color: #808080;
 }
@@ -24,13 +29,16 @@ body {
 a {
   cursor: pointer;
   text-decoration: none;
+  color: white;
 }
 
 a:hover {
   text-decoration: underline;
+  color: white;
 }
 
-hr {
+hr,
+.top-number {
   color: #808080;
 }
 

@@ -17,6 +17,7 @@ app.use(express.static(path.resolve(__dirname, '..', 'public')))
 app.use(morgan('dev'))
 
 app.use('/auth', require('./routes/auth'))
+app.use('/top', require('./routes/top'))
 
 app.get('/', async (req, res) => {
   const accessToken = db.get('tokens.accessToken')
@@ -31,7 +32,8 @@ app.get('/', async (req, res) => {
     isListening,
     uri,
     recentlyTrack,
-    cache: false
+    cache: false,
+    title: isListening ? 'Now Playing...' : "I'm busy"
   })
 })
 
