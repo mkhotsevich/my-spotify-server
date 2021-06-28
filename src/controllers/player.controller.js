@@ -11,7 +11,9 @@ module.exports.addToQueue = async (req, res, next) => {
     if (Object.keys(track).length === 0) return next(createError(404))
     await addToQueue(accessToken, track.uri)
     await skipToNext(accessToken)
-    return res.redirect('/')
+    setTimeout(() => {
+      return res.redirect('/')
+    }, 1000)
   } catch (e) {
     console.error(e)
     return next(createError(500, e))
