@@ -1,6 +1,7 @@
 require('dotenv').config()
 const CronJob = require('cron').CronJob
 const db = require('quick.db')
+const moment = require('moment')
 
 const app = require('./app')
 const spotify = require('./spotify/spotify')
@@ -12,7 +13,7 @@ const job = new CronJob('0 */60 * * * *', async () => {
     body: { access_token }
   } = await spotify.refreshAccessToken()
   db.set('tokens.accessToken', access_token)
-  console.log('token updated')
+  console.log(`Token updated at: ${moment().format('HH:mm DD.MM')}`)
 })
 job.start()
 

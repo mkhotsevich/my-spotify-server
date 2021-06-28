@@ -13,11 +13,11 @@ module.exports = {
   ],
   deploy: {
     production: {
-      user: 'std',
-      host: 'std-927.ist.mospolytech.ru',
+      user: 'root',
+      host: '89.108.102.195',
       ref: 'origin/master',
       repo: 'git@github.com:mkhotsevich/my-spotify-server.git',
-      path: '/home/std/my-spotify-server',
+      path: '/var/www/mkhotsevich.ru',
       'post-deploy':
         'npm install && pm2 reload ecosystem.config.js --env production'
     }

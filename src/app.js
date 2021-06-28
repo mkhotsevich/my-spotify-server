@@ -7,7 +7,6 @@ const {
   getCurrentPlayingTrack,
   getRecentlyPlayedTracks
 } = require('./spotify/player')
-const { log } = require('console')
 
 const app = express()
 
