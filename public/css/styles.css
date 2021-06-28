@@ -12,6 +12,11 @@ body {
   height: 250px;
 }
 
+.mini_cover {
+  width: 50px;
+  height: 50px;
+}
+
 .author-name {
   color: #808080;
 }
@@ -23,4 +28,13 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+hr {
+  color: #808080;
+}
+
+.recently-text {
+  color: #808080;
+  font-size: 0.8rem;
 }

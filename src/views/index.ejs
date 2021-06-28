@@ -6,7 +6,7 @@
   <body>
     <div class="container">
       <% if (isListening) { %>
-      <div class="row mt-5">
+      <div class="row mt-3">
         <div class="col d-flex justify-content-center">
           <h1 class="text-white">Now playing:</h1>
         </div>
@@ -20,12 +20,12 @@
       </div>
       <div class="row mt-4">
         <div class="col col d-flex justify-content-center">
-          <a href="<%= uri %>" class="text-white h1"><%= name %></a>
+          <a href="<%= uri %>" class="text-white h1 text-center"><%= name %></a>
         </div>
       </div>
       <div class="row">
         <div class="col col d-flex justify-content-center">
-          <h6 class="author-name"><%= author %></h6>
+          <h6 class="author-name text-center"><%= author %></h6>
         </div>
       </div>
       <% } else{ %>
@@ -35,6 +35,48 @@
         </div>
       </div>
       <% } %>
+      <div class="row">
+        <div class="col-sm-10 offset-sm-1 col-lg-6 offset-lg-3">
+          <hr />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col d-flex justify-content-center align-center">
+          <h1 class="text-white h3">Recently Played:</h1>
+        </div>
+      </div>
+      <% recentlyTrack.forEach(t => { %>
+      <div class="row my-2">
+        <div
+          class="
+            col-sm-10
+            offset-sm-1
+            col-lg-6
+            offset-lg-3
+            d-flex
+            flex-row
+            justify-content-between
+          "
+        >
+          <div class="d-flex flex-row">
+            <img src="<%= t.image %>" alt="cover" class="mini_cover" />
+            <div class="ms-2 align-self-center">
+              <a
+                href="<%= t.uri %>"
+                class="recently-text text-truncate text-white"
+                style="max-width: 170px"
+                ><%= t.name %></a
+              >
+
+              <div class="recently-text text-truncate" style="max-width: 170px">
+                <%= t.author %>
+              </div>
+            </div>
+          </div>
+          <div class="align-self-center recently-text"><%= t.playedAt %></div>
+        </div>
+      </div>
+      <% }); %>
     </div>
   </body>
 </html>
