@@ -1,8 +1,11 @@
 {
   "spotify": {
-    "clientId": "fc0042067e5d4bf1a7e3fd1f20a7764b",
-    "clientSecret": "63f6d4b8f6234b4681907e4b2baa034a",
-    "redirectUri": "http://localhost:5000/auth/redirect",
+    "clientId": "d8ff86559dd94a54a089b78c557985f6",
+    "clientSecret": "9a9bc4c441d54de5a68bc89939edd8d3",
+    "redirectUri": [
+      "http://localhost:5000/auth/redirect",
+      "http://my-spotify-server.std-927.ist.mospolytech.ru/auth/redirect"
+    ],
     "scopes": [
       "ugc-image-upload",
       "user-read-recently-played",
