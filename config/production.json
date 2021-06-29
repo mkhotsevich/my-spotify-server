@@ -2,7 +2,7 @@
   "spotify": {
     "clientId": "fc0042067e5d4bf1a7e3fd1f20a7764b",
     "clientSecret": "63f6d4b8f6234b4681907e4b2baa034a",
-    "redirectUri": "http://my-spotify-server.std-927.ist.mospolytech.ru/auth/redirect",
+    "redirectUri": "https://mkhotsevich.ru/auth/redirect",
     "scopes": [
       "ugc-image-upload",
       "user-read-recently-played",
@@ -24,17 +24,5 @@
       "user-read-email",
       "user-read-private"
     ]
-  },
-  "database": {
-    "name": "std_927_spotychat",
-    "username": "std_927_spotychat",
-    "password": "std_927_spotychat",
-    "dialect": "mysql",
-    "host": "std-mysql",
-    "port": "3306"
-  },
-  "jwt": {
-    "secret": "maxim",
-    "expiresIn": "7d"
   }
 }
