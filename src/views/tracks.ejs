@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./particles/head'); %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-3">
+        <div class="col d-flex justify-content-center">
+          <h1 class="text-white">Top Tracks:</h1>
+        </div>
+      </div>
+      <% topTracks.forEach((t, i) => { %>
+      <div class="row my-2">
+        <div
+          class="
+            col-sm-10
+            offset-sm-1
+            col-lg-6
+            offset-lg-3
+            d-flex
+            flex-row
+            justify-content-between
+          "
+        >
+          <div class="d-flex flex-row">
+            <img src="<%= t.image %>" alt="cover" class="mini_cover" />
+            <div class="ms-2 align-self-center">
+              <a
+                href="<%= t.uri %>"
+                class="recently-text text-truncate text-white"
+                style="max-width: 250px"
+                ><%= t.name %></a
+              >
+
+              <div class="recently-text text-truncate" style="max-width: 250px">
+                <%= t.author %>
+              </div>
+            </div>
+          </div>
+          <div class="align-self-center h3 top-number"><%= i + 1 %></div>
+        </div>
+      </div>
+      <% }); %>
+      <div class="row">
+        <div class="col-10 offset-1 col-lg-4 offset-lg-4">
+          <hr />
+        </div>
+      </div>
+      <div class="row my-3">
+        <div
+          class="
+            col-sm-10
+            offset-sm-1
+            col-lg-6
+            offset-lg-3
+            d-flex
+            flex-row
+            justify-content-center
+          "
+        >
+          <a href="/">Back</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

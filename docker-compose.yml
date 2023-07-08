@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  express-server:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - postgres
+    ports:
+      - "8001:8080"
+      - "5000:5000"
+
+  postgres:
+    image: postgres:11
+    ports:
+      - "35432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db

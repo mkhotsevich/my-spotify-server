@@ -1,0 +1,44 @@
+{
+  "APP": {
+    "PORT": "8080",
+    "BASE_URL": "http://localhost"
+  },
+  "SPOTIFY": {
+    "CLIENT_ID": "8832b83f82964ff6b754a66afbf2a772",
+    "CLIENT_SECRET": "fae10e7f6e4a46199cc64dab346d6d8d",
+    "REDIRECT_URI": "http://localhost:8080/auth/redirect",
+    "SCOPES": [
+      "ugc-image-upload",
+      "user-read-recently-played",
+      "user-top-read",
+      "user-read-playback-position",
+      "user-read-playback-state",
+      "user-modify-playback-state",
+      "user-read-currently-playing",
+      "app-remote-control",
+      "streaming",
+      "playlist-modify-public",
+      "playlist-modify-private",
+      "playlist-read-private",
+      "playlist-read-collaborative",
+      "user-follow-modify",
+      "user-follow-read",
+      "user-library-modify",
+      "user-library-read",
+      "user-read-email",
+      "user-read-private"
+    ]
+  },
+  "database": {
+    "name": "postgres",
+    "username": "postgres",
+    "password": "postgres",
+    "dialect": "postgres",
+    "host": "localhost",
+    "port": "5432"
+  },
+  "jwt": {
+    "secret": "maxim",
+    "expiresIn": "7d"
+  }
+}
